@@ -1,0 +1,15 @@
+type Query{
+    findUserById(id: String): User,
+    findAllUsers: [User]
+}
+
+type Mutation{
+    saveUser(name: String, email:String, edad: Int): User
+}
+
+type User{
+    id: String,
+    nombre: String,
+    email: String,
+    edad: Int
+}
