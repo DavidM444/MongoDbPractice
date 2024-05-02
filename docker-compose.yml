@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  myapp:
+    build: .
+    ports:
+      - "8081:8081"
+    links:
+      - mydb
+  mydb:
+    image: mongo
+    ports:
+      - "27018:27018"
