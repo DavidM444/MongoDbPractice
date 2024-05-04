@@ -24,12 +24,14 @@ public class UserController {
 
     @MutationMapping
     public Mono<User> saveUser(@Argument String name, @Argument String email, @Argument Integer edad){
+        System.out.println("!!Guardando nuevo usuario. --------------------------------------------------");
         UserData data = new UserData(name,email,edad);
         return userResolver.saveUserResolver(data);
     }
 
     @QueryMapping
     public Mono<User> findUserById(@Argument String  id){
+        System.out.println("!!Retornando todos los usuarios, ----------------------------------------------");
         return userResolver.getUserResolver(id);
     }
 
