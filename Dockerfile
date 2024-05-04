@@ -1,4 +1,4 @@
-FROM bellsoft/liberica-openjdk-alpine
+FROM bellsoft/liberica-openjdk-alpine:17.0.7
 LABEL maintainer="David Muñoz"
 RUN mkdir -p /home/app
 COPY ./target/mongoapp-0.0.1-SNAPSHOT.jar /home/app
