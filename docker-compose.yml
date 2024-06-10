@@ -1,12 +1,29 @@
-version: "3.9"
+version: "3.1"
 services:
   myapp:
+    container_name: myapp
     build: .
+    #Para usar otro archivo dockerfile como arranque en lugar de el contexto actual . Esto va en otro docker compose personalizado.
+    #build:
+      #context: .
+      #dockerfile: myfiledocker: dockerfile.dev
     ports:
-      - "8081:8081"
-    links:
+      - 8081:8080
+    depends_on:
       - mydb
+    environment:
+      - DATABASE_URL=mongodb://david:password@mydb:27017/user?authSource=admin
   mydb:
+    container_name: "mydb"
     image: mongo
     ports:
-      - "27018:27018"
+       - 27018:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: david
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes: #rutas donde se va a guardar el volumn en el container
+        - data-mongo-db:/data/db
+        #mysql ruta -> /var/lib/mysql
+        # postgres ruta -> /var/lib/postgresql/data
+volumes:
+  data-mongo-db: #volumen anonimo
